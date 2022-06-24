@@ -32,8 +32,17 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double drinkPrice5;
     public static double drinkPrice6;
 
+//    Coins Stock & Storage Reduction
+    public static String coinstomoney10;
+    public static String coinstomoney20;
+    public static String coinstomoney50;
+    public static String coinstomoney1;
+
     public CustomerControlPanelJFrame() {
         initComponents();
+
+        FileHandler.readFile("DrinksPrice.txt");
+
         try {
             File myObj = new File("DrinksPrice.txt");
             Scanner myReader = new Scanner(myObj);
@@ -697,12 +706,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Item purchased successfully! Please, collect the dispensed change & drink.");
 
                     // REDUCE COIN STOCK
-                    
-//                    String coinstomoney10 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 0.1);
-//                    String coinstomoney20 = String.valueOf(Double.parseDouble(coinStockList.get(3)) * 0.2);
-//                    String coinstomoney50 = String.valueOf(Double.parseDouble(coinStockList.get(5)) * 0.5);
-//                    String coinstomoney1 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 1);
-//
+//                    coinstomoney10 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 0.1);
+//                    coinstomoney20 = String.valueOf(Double.parseDouble(coinStockList.get(3)) * 0.2);
+//                    coinstomoney50 = String.valueOf(Double.parseDouble(coinStockList.get(5)) * 0.5);
+//                    coinstomoney1 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 1);
+
 //                    totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
 //                            
 //                    TotalCash.setText(String.valueOf(totalCash));
@@ -710,8 +718,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 //                    String wholeNumber = String.valueOf(isSufficient.substring(0, isSufficient.indexOf("."))); //123
 //                    String fractionNumber = String.valueOf(isSufficient.substring(doubleAsString.indexOf(".") + 1)); //456
 //                    
-
-
 //                    1. CALCULATIONS TO KNOW WHICH TO REDUCE
 //                    
 //                    try {
