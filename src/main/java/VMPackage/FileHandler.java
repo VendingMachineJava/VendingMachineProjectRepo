@@ -39,12 +39,6 @@ public class FileHandler {
                 fileList.add("0");
             }
         }
-//        if (fileList == null) {
-////            return new ArrayList<String>(); //null ya3ni
-//            for (int i = 0; i < 15; i++) {
-//                fileList.add("0");
-//            }
-//        }
         return (fileList);
     }
 }

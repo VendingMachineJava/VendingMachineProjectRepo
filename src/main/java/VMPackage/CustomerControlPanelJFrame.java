@@ -32,6 +32,13 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double drinkPrice5;
     public static double drinkPrice6;
 
+    public static int drinkStock1;
+    public static int drinkStock2;
+    public static int drinkStock3;
+    public static int drinkStock4;
+    public static int drinkStock5;
+    public static int drinkStock6;
+
 //    Coins Stock & Storage Reduction
     public static String coinstomoney10;
     public static String coinstomoney20;
@@ -47,12 +54,20 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         drinkPrice6 = Double.parseDouble(drinksPrices.get(11));
     }
 
+    public static void getDrinksStock(ArrayList<String> drinksStock) {
+        drinkStock1 = Integer.parseInt(drinksStock.get(1));
+        drinkStock2 = Integer.parseInt(drinksStock.get(3));
+        drinkStock3 = Integer.parseInt(drinksStock.get(5));
+        drinkStock4 = Integer.parseInt(drinksStock.get(7));
+        drinkStock5 = Integer.parseInt(drinksStock.get(9));
+        drinkStock6 = Integer.parseInt(drinksStock.get(11));
+    }
+
     public CustomerControlPanelJFrame() {
         initComponents();
 
         // DISPLAY PRICE
         getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
-        
 
         DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
         DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
@@ -61,93 +76,44 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
         DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
 
-        //            DrinkBrand1Price.setText("0");
-//            DrinkBrand2Price.setText("0");
-//            DrinkBrand3Price.setText("0");
-//            DrinkBrand4Price.setText("0");
-//            DrinkBrand5Price.setText("0");
-//            DrinkBrand6Price.setText("0");
+//         GET DRINKS STOCK
+        getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
 
-
-//        GETTING DRINK PRICES
-//        try {
-//            File myObj = new File("DrinksPrice.txt"); 
-//            Scanner myReader = new Scanner(myObj);
-//            ArrayList<String> drinksPriceList = new ArrayList<String>();
-//            while (myReader.hasNext()) {
-//                drinksPriceList.add(myReader.next());
-//            }
-//            myReader.close();
-//
-//            drinkPrice1 = Double.parseDouble(drinksPriceList.get(1));
-//            drinkPrice2 = Double.parseDouble(drinksPriceList.get(3));
-//            drinkPrice3 = Double.parseDouble(drinksPriceList.get(5));
-//            drinkPrice4 = Double.parseDouble(drinksPriceList.get(7));
-//            drinkPrice5 = Double.parseDouble(drinksPriceList.get(9));
-//            drinkPrice6 = Double.parseDouble(drinksPriceList.get(11));
-//
-//            DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
-//            DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
-//            DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
-//            DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
-//            DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
-//            DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
-//
-////            DrinkBrand6Price.setText(String.valueOf(drinksPriceList.get(11)));
-//        } catch (FileNotFoundException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//
-//        }
-        try {
-            File myObj = new File("DrinksStock.txt");
-            Scanner myReader = new Scanner(myObj);
-            ArrayList<String> drinksStockList = new ArrayList<String>();
-            while (myReader.hasNext()) {
-                drinksStockList.add(myReader.next());
-            }
-            myReader.close();
-
-            if (Integer.parseInt(drinksStockList.get(1)) == 0) {
-                stock1.enable();
-                Drink1Select.setEnabled(false);
-            } else {
-                stock1.disable();
-            }
-            if (Integer.parseInt(drinksStockList.get(3)) == 0) {
-                stock2.enable();
-                Drink2Select.setEnabled(false);
-            } else {
-                stock2.disable();
-            }
-            if (Integer.parseInt(drinksStockList.get(5)) == 0) {
-                stock3.enable();
-                Drink3Select.setEnabled(false);
-            } else {
-                stock3.disable();
-            }
-            if (Integer.parseInt(drinksStockList.get(7)) == 0) {
-                stock4.enable();
-                Drink4Select.setEnabled(false);
-            } else {
-                stock4.disable();
-            }
-            if (Integer.parseInt(drinksStockList.get(9)) == 0) {
-                stock5.enable();
-                Drink5Select.setEnabled(false);
-            } else {
-                stock5.disable();
-            }
-            if (Integer.parseInt(drinksStockList.get(11)) == 0) {
-                stock6.enable();
-                Drink6Select.setEnabled(false);
-            } else {
-                stock6.disable();
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        if (drinkStock1 == 0) {
+            stock1.enable();
+            Drink1Select.setEnabled(false);
+        } else {
+            stock1.disable();
+        }
+        if (drinkStock2 == 0) {
+            stock2.enable();
+            Drink2Select.setEnabled(false);
+        } else {
+            stock2.disable();
+        }
+        if (drinkStock3 == 0) {
+            stock3.enable();
+            Drink3Select.setEnabled(false);
+        } else {
+            stock3.disable();
+        }
+        if (drinkStock4 == 0) {
+            stock4.enable();
+            Drink4Select.setEnabled(false);
+        } else {
+            stock4.disable();
+        }
+        if (drinkStock5 == 0) {
+            stock5.enable();
+            Drink5Select.setEnabled(false);
+        } else {
+            stock5.disable();
+        }
+        if (drinkStock6 == 0) {
+            stock6.enable();
+            Drink6Select.setEnabled(false);
+        } else {
+            stock6.disable();
         }
     }
 
