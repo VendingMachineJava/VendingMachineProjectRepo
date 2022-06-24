@@ -39,10 +39,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static int drinkStock5;
     public static int drinkStock6;
 
-    public static double coinStock10;
-    public static double coinStock20;
-    public static double coinStock50;
-    public static double coinStock1;
+    public static int coinStock10;
+    public static int coinStock20;
+    public static int coinStock50;
+    public static int coinStock1;
+
+    public static double coinValue10;
+    public static double coinValue20;
+    public static double coinValue50;
+    public static double coinValue1;
 
     public static void getDrinksPrice(ArrayList<String> drinksPrices) {
         drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
@@ -63,10 +68,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }
 
     public static void getCoinsStock(ArrayList<String> coinsStock) {
-        coinStock10 = Double.parseDouble(coinsStock.get(1));
-        coinStock20 = Double.parseDouble(coinsStock.get(3));
-        coinStock50 = Double.parseDouble(coinsStock.get(5));
-        coinStock1 = Double.parseDouble(coinsStock.get(7));
+        coinStock10 = Integer.parseInt(coinsStock.get(1));
+        coinStock20 = Integer.parseInt(coinsStock.get(3));
+        coinStock50 = Integer.parseInt(coinsStock.get(5));
+        coinStock1 = Integer.parseInt(coinsStock.get(7));
     }
 
     public CustomerControlPanelJFrame() {
@@ -659,71 +664,52 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Item purchased successfully! Please, collect the dispensed change & drink.");
 
                     // REDUCE COIN STOCK
-//                    coinstomoney10 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 0.1);
-//                    coinstomoney20 = String.valueOf(Double.parseDouble(coinStockList.get(3)) * 0.2);
-//                    coinstomoney50 = String.valueOf(Double.parseDouble(coinStockList.get(5)) * 0.5);
-//                    coinstomoney1 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 1);
-//                    totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
+                    getCoinsStock(FileHandler.readFile("CoinStock.txt"));
+
+                    coinValue10 = coinStock10 * 0.1;
+                    coinValue20 = coinStock20 * 0.2;
+                    coinValue50 = coinStock50 * 0.5;
+                    coinValue1 = coinStock1 * 1;
+
+                    double totalVMCoinStock = coinValue10 + coinValue20 + coinValue50 + coinValue1;
+
+                    if (totalVMCoinStock >= isSufficient) {
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Sorry, there is not enough money in the vending machine.");
+                    }
+
+                    //                    1. CALCULATIONS TO KNOW WHICH TO REDUCE
+                    //123.456
+                    String wholeNumber = String.valueOf(isSufficient.substring(0, isSufficient.indexOf("."))); //123
+                    String fractionNumber = String.valueOf(isSufficient.substring(doubleAsString.indexOf(".") + 1)); //456
+
+//int total = 200;
+//
+//               System.out. printf("quarter\tdime\tnickle\tpenny\tto make %d\n", total);
+//
+                int combos = 0;
+//
+//                for (int i = 0; i <= totalVMCoinStock / 25; i++)
+//                {
+//                    
 //                            
-//                    TotalCash.setText(String.valueOf(totalCash));
-//                    String doubleAsString = Double.toString(123.456);
-//                    String wholeNumber = String.valueOf(isSufficient.substring(0, isSufficient.indexOf("."))); //123
-//                    String fractionNumber = String.valueOf(isSufficient.substring(doubleAsString.indexOf(".") + 1)); //456
-//                    
-//                    1. CALCULATIONS TO KNOW WHICH TO REDUCE
-//                    
-//                    try {
-////                        EL ACTUAL FILE MODIFICATION
-//
-//                        File myObj = new File("CoinStock.txt");
-//                        Scanner myReader = new Scanner(myObj);
-//                        ArrayList<String> coinStockList = new ArrayList<String>();
-//                        while (myReader.hasNext()) {
-//                            coinStockList.add(myReader.next());
-//                        }
-//                        myReader.close();
-//
-////                        double coinstomoney10 = Double.parseDouble(coinStockList.get(1)) * 0.1;
-////                        double coinstomoney20 = Double.parseDouble(coinStockList.get(3)) * 0.2;
-////                        double coinstomoney50 = Double.parseDouble(coinStockList.get(5)) * 0.5;
-////                        double coinstomoney1 = Double.parseDouble(coinStockList.get(1)) * 1;
-//                                File originalFile = new File("CoinStock.txt");
-//                        BufferedReader br = new BufferedReader(new FileReader(originalFile));
-//                        File tempFile = new File("tempfile.txt");
-//                        PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-//
-//                        String line = null;
-//
-//                        while ((line = br.readLine()) != null) {
-//                            if (line.contains(selectedDrink)) {
-//                                String strCurrentStock = line.substring(line.lastIndexOf(" "), line.length());
-//                                if (strCurrentStock != null || !strCurrentStock.trim().isEmpty()) {
-//                                    int newStock = Integer.parseInt(strCurrentStock.trim()) - 1;
-//                                    System.out.println("new stock : " + newStock);
-//                                    line = line.substring(0, line.lastIndexOf(" ")) + " " + newStock;
-//                                }
-//                            }
-//                            pw.println(line);
-//                            pw.flush();
-//                        }
-//                        pw.close();
-//                        br.close();
-//                        // Delete the original file
-//                        if (!originalFile.delete()) {
-//                            System.out.println("Could not delete file");
-//                            return;
-//                        }
-//                        // Rename the new file to the filename the original file had.
-//                        if (!tempFile.renameTo(originalFile)) {
-//                            System.out.println("Could not rename file");
-//                        }
-//                    } catch (IOException e) {
-//                        System.out.println("An error occurred.");
-//                        e.printStackTrace();
-//                    }
-//
-////                    String.valueOf(isSufficient)
 //                }
+//                    int total_less_q = total - q * 25;
+//                    for (int d = 0; d <= total_less_q / 10; d++)
+//                    {
+//                        int total_less_q_d = total_less_q - d * 10;
+//                        for (int n = 0; n <= total_less_q_d / 5; n++)
+//                        {
+//                            int p = total_less_q_d - n * 5;
+//                            System.out.printf("%d\t%d\t%d\t%d\n", q, d, n, p);
+//                            combos++;
+//                        }
+//                    }
+//                }
+//
+//                System.out.printf("%d combinations\n", combos);
+
 //
 ////                RESET ALL
 ////                checkStorage();
