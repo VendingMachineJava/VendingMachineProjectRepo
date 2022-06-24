@@ -40,10 +40,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static int drinkStock6;
 
 //    Coins Stock & Storage Reduction
-    public static String coinstomoney10;
-    public static String coinstomoney20;
-    public static String coinstomoney50;
-    public static String coinstomoney1;
+    public static double coinStock10;
+    public static double coinStock20;
+    public static double coinStock50;
+    public static double coinStock1;
 
     public static void getDrinksPrice(ArrayList<String> drinksPrices) {
         drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
@@ -61,6 +61,13 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         drinkStock4 = Integer.parseInt(drinksStock.get(7));
         drinkStock5 = Integer.parseInt(drinksStock.get(9));
         drinkStock6 = Integer.parseInt(drinksStock.get(11));
+    }
+    
+    public static void getCoinsStock(ArrayList<String> coinsStock) {
+        coinStock10 = Double.parseDouble(coinsStock.get(1));
+        coinStock20 = Double.parseDouble(coinsStock.get(3));
+        coinStock50 = Double.parseDouble(coinsStock.get(5));
+        coinStock1 = Double.parseDouble(coinsStock.get(7));
     }
 
     public CustomerControlPanelJFrame() {
