@@ -1,6 +1,6 @@
 drinksStock1 12
 drinksStock2 0
 drinksStock3 0
-drinksStock4 6
+drinksStock4 5
 drinksStock5 8
 drinksStock6 0

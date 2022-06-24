@@ -39,7 +39,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static int drinkStock5;
     public static int drinkStock6;
 
-//    Coins Stock & Storage Reduction
     public static double coinStock10;
     public static double coinStock20;
     public static double coinStock50;
@@ -62,7 +61,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         drinkStock5 = Integer.parseInt(drinksStock.get(9));
         drinkStock6 = Integer.parseInt(drinksStock.get(11));
     }
-    
+
     public static void getCoinsStock(ArrayList<String> coinsStock) {
         coinStock10 = Double.parseDouble(coinsStock.get(1));
         coinStock20 = Double.parseDouble(coinsStock.get(3));
@@ -631,68 +630,29 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         } else {
             if (Drink1Select.isSelected()) {
                 isSufficient -= drinkPrice1;
-                selectedDrink = "drinkPrice1";
+                selectedDrink = "drinksStock1";
             } else if (Drink2Select.isSelected()) {
                 isSufficient -= drinkPrice2;
-                selectedDrink = "drinkPrice2";
+                selectedDrink = "drinksStock2";
             } else if (Drink3Select.isSelected()) {
                 isSufficient -= drinkPrice3;
-                selectedDrink = "drinkPrice3";
+                selectedDrink = "drinksStock3";
             } else if (Drink4Select.isSelected()) {
                 isSufficient -= drinkPrice4;
-                selectedDrink = "drinkPrice4";
+                selectedDrink = "drinksStock4";
             } else if (Drink5Select.isSelected()) {
                 isSufficient -= drinkPrice5;
-                selectedDrink = "drinkPrice5";
+                selectedDrink = "drinksStock5";
             } else if (Drink6Select.isSelected()) {
                 isSufficient -= drinkPrice6;
-                selectedDrink = "drinkPrice6";
+                selectedDrink = "drinksStock6";
             }
 
             if (isSufficient < 0) {
                 JOptionPane.showMessageDialog(rootPane, "Insufficient Funds. Please, insert more money");
             } else if (isSufficient == 0 || isSufficient > 0) { //aka, successful
 //                Reduce stock by 1 from the selected drink
-                try {
-                    File originalFile = new File("DrinksStock.txt");
-                    BufferedReader br = new BufferedReader(new FileReader(originalFile));
-
-                    // Construct the new file that will later be renamed to the original
-                    // filename.
-                    File tempFile = new File("tempfile.txt");
-                    PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-
-                    String line = null;
-                    // Read from the original file and write to the new
-                    // unless content matches data to be removed
-                    while ((line = br.readLine()) != null) {
-                        if (line.contains(selectedDrink)) {
-                            String strCurrentStock = line.substring(line.lastIndexOf(" "), line.length());
-                            if (strCurrentStock != null || !strCurrentStock.trim().isEmpty()) {
-                                int newStock = Integer.parseInt(strCurrentStock.trim()) - 1;
-                                System.out.println("new stock : " + newStock);
-                                line = line.substring(0, line.lastIndexOf(" ")) + " " + newStock;
-                            }
-                        }
-                        pw.println(line);
-                        pw.flush();
-                    }
-                    pw.close();
-                    br.close();
-                    // Delete the original file
-                    if (!originalFile.delete()) {
-                        System.out.println("Could not delete file");
-                        return;
-                    }
-                    // Rename the new file to the filename the original file had.
-                    if (!tempFile.renameTo(originalFile)) {
-                        System.out.println("Could not rename file");
-                    }
-                } catch (IOException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
-                }
-
+                FileHandler.reduce("DrinksStock.txt", selectedDrink, 1);
                 if (isSufficient == 0) {
                     JOptionPane.showMessageDialog(rootPane, "Item purchased successfully! Please, collect the dispensed drink.");
                 } else if (isSufficient > 0) {
