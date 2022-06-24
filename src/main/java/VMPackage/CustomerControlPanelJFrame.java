@@ -38,47 +38,67 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static String coinstomoney50;
     public static String coinstomoney1;
 
+    public static void getDrinksPrice(ArrayList<String> drinksPrices) {
+        drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
+        drinkPrice2 = Double.parseDouble(drinksPrices.get(3));
+        drinkPrice3 = Double.parseDouble(drinksPrices.get(5));
+        drinkPrice4 = Double.parseDouble(drinksPrices.get(7));
+        drinkPrice5 = Double.parseDouble(drinksPrices.get(9));
+        drinkPrice6 = Double.parseDouble(drinksPrices.get(11));
+    }
+
     public CustomerControlPanelJFrame() {
         initComponents();
 
-        FileHandler.readFile("DrinksPrice.txt");
+        // DISPLAY PRICE
+        getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
+        
 
-        try {
-            File myObj = new File("DrinksPrice.txt");
-            Scanner myReader = new Scanner(myObj);
-            ArrayList<String> drinksPriceList = new ArrayList<String>();
-            while (myReader.hasNext()) {
-                drinksPriceList.add(myReader.next());
-            }
-            myReader.close();
+        DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
+        DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
+        DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
+        DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
+        DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
+        DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
 
-            drinkPrice1 = Double.parseDouble(drinksPriceList.get(1));
-            drinkPrice2 = Double.parseDouble(drinksPriceList.get(3));
-            drinkPrice3 = Double.parseDouble(drinksPriceList.get(5));
-            drinkPrice4 = Double.parseDouble(drinksPriceList.get(7));
-            drinkPrice5 = Double.parseDouble(drinksPriceList.get(9));
-            drinkPrice6 = Double.parseDouble(drinksPriceList.get(11));
+        //            DrinkBrand1Price.setText("0");
+//            DrinkBrand2Price.setText("0");
+//            DrinkBrand3Price.setText("0");
+//            DrinkBrand4Price.setText("0");
+//            DrinkBrand5Price.setText("0");
+//            DrinkBrand6Price.setText("0");
 
-            DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
-            DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
-            DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
-            DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
-            DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
-            DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
 
-//            DrinkBrand6Price.setText(String.valueOf(drinksPriceList.get(11)));
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-
-            DrinkBrand1Price.setText("0");
-            DrinkBrand2Price.setText("0");
-            DrinkBrand3Price.setText("0");
-            DrinkBrand4Price.setText("0");
-            DrinkBrand5Price.setText("0");
-            DrinkBrand6Price.setText("0");
-        }
-
+//        GETTING DRINK PRICES
+//        try {
+//            File myObj = new File("DrinksPrice.txt"); 
+//            Scanner myReader = new Scanner(myObj);
+//            ArrayList<String> drinksPriceList = new ArrayList<String>();
+//            while (myReader.hasNext()) {
+//                drinksPriceList.add(myReader.next());
+//            }
+//            myReader.close();
+//
+//            drinkPrice1 = Double.parseDouble(drinksPriceList.get(1));
+//            drinkPrice2 = Double.parseDouble(drinksPriceList.get(3));
+//            drinkPrice3 = Double.parseDouble(drinksPriceList.get(5));
+//            drinkPrice4 = Double.parseDouble(drinksPriceList.get(7));
+//            drinkPrice5 = Double.parseDouble(drinksPriceList.get(9));
+//            drinkPrice6 = Double.parseDouble(drinksPriceList.get(11));
+//
+//            DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
+//            DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
+//            DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
+//            DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
+//            DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
+//            DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
+//
+////            DrinkBrand6Price.setText(String.valueOf(drinksPriceList.get(11)));
+//        } catch (FileNotFoundException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//
+//        }
         try {
             File myObj = new File("DrinksStock.txt");
             Scanner myReader = new Scanner(myObj);
@@ -710,7 +730,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 //                    coinstomoney20 = String.valueOf(Double.parseDouble(coinStockList.get(3)) * 0.2);
 //                    coinstomoney50 = String.valueOf(Double.parseDouble(coinStockList.get(5)) * 0.5);
 //                    coinstomoney1 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 1);
-
 //                    totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
 //                            
 //                    TotalCash.setText(String.valueOf(totalCash));
